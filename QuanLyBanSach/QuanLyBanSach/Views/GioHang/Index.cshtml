@@ -1,0 +1,74 @@
+﻿@using QuanLyBanSach.Models;
+@model List<GioHang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GioHang</h2>
+
+<table>
+    <tr>
+        <td>
+            Mã sách
+        </td>
+        <td>
+            Tên sách
+        </td>
+        <td>
+            Ảnh bìa
+        </td>
+        <td>
+            Số lượng
+        </td>
+        <td>
+            Đơn giá
+        </td>
+        <td>
+            Thành tiền
+        </td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.MaSach
+            </td>
+            <td>
+                @item.TenSach
+            </td>
+            <td>
+                <img src="~/image/@item.AnhBia" />
+            </td>
+            @using (Html.BeginForm("CapNhat", "GioHang", new { @id = item.MaSach }))
+            {
+                <td>
+                    <input type="number" name="SoLuong" id="SoLuong" value="@item.SoLuong" />
+                    <button type="submit">Cap Nhat</button>
+                </td>
+            }
+            <td>
+                @String.Format("{0:0,0}", item.DonGia)
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.ThanhTien)
+            </td>
+            <td>
+                <a href="@Url.Action("ChiTietSach", "Sach", new { id = item.MaSach })">
+                    Chi Tiet
+                </a>
+            </td>
+            <td>
+                <a href="@Url.Action("MuaSau", "GioHang", new { id = item.MaSach })">
+                    Mua Sau
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Xóa giỏ hàng", "XoaGioHang", "GioHang")
+            </td>
+        </tr>
+    }
+</table>

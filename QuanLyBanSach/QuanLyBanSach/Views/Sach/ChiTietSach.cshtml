@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "ChiTietSach";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ChiTietSach</h2>
+
+<div>
+    @Model.TenSach
+</div>
+
+<div>
+    <a href="@Url.Action("ThemGioHang", "GioHang", new { @MaSach = @Model.MaSach, @strUrl = Request.Url.ToString()})">
+        Đặt mua
+    </a>
+</div>

@@ -4,11 +4,3 @@
     font-family: Roboto;
     font-size: 16px;
 }
-.nav-logo {
-    height: 75px;
-    width: 75px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url('../images/logo.png');
-}

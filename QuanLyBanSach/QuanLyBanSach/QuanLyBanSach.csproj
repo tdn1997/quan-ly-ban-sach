@@ -121,29 +121,28 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BookStoreController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
+    <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\SachController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\QLBS.designer.cs">
+    <Compile Include="Models\GioHang .cs" />
+    <Compile Include="Models\QuanLyBanSach.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLBS.dbml</DependentUpon>
+      <DependentUpon>QuanLyBanSach.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-families.css" />
+    <Content Include="Content\StyleSheet.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\style.css" />
     <Content Include="images\logo.png" />
-    <Content Include="Models\QLBS.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>QLBS.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="fonts\Roboto-Black.ttf" />
     <Content Include="fonts\Roboto-BlackItalic.ttf" />
     <Content Include="fonts\Roboto-Bold.ttf" />
@@ -162,8 +161,13 @@
     <Content Include="fonts\RobotoCondensed-Light.ttf" />
     <Content Include="fonts\RobotoCondensed-LightItalic.ttf" />
     <Content Include="fonts\RobotoCondensed-Regular.ttf" />
-    <None Include="Models\QLBS.dbml.layout">
-      <DependentUpon>QLBS.dbml</DependentUpon>
+    <Content Include="Models\QuanLyBanSach.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>QuanLyBanSach.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Models\QuanLyBanSach.dbml.layout">
+      <DependentUpon>QuanLyBanSach.dbml</DependentUpon>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -192,7 +196,16 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\BookStore\Index.cshtml" />
+    <Content Include="Views\Sach\ChuDe.cshtml" />
+    <Content Include="Views\Sach\Index.cshtml" />
+    <Content Include="Views\Sach\NhaXuatBan.cshtml" />
+    <Content Include="Views\Sach\ChiTietSach.cshtml" />
+    <Content Include="Views\Sach\SachTheoNXB.cshtml" />
+    <Content Include="Views\Sach\SachTheoChuDe.cshtml" />
+    <Content Include="Views\NguoiDung\DangKy.cshtml" />
+    <Content Include="Views\NguoiDung\DangNhap.cshtml" />
+    <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\GioHang\GioHangPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

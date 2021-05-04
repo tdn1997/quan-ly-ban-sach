@@ -1,0 +1,12 @@
+﻿@model IEnumerable<QuanLyBanSach.Models.NhaXuatBan>
+
+<div>
+    <h2>Nha xuat ban</h2>
+    @foreach (var nhaXuatBan in Model)
+    {
+        <a href="@Url.Action("SachTheoNXB", "Sach", new { id = nhaXuatBan.MaNXB})">
+            @nhaXuatBan.TenNXB
+        </a>
+    }
+</div>
+

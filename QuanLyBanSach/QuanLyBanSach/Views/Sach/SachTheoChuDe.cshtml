@@ -1,0 +1,16 @@
+﻿@model IEnumerable<QuanLyBanSach.Models.Sach>
+
+@{
+    ViewBag.Title = "SachTheoChuDe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h2>SachTheoChuDe</h2>
+    @foreach (var sach in Model)
+    {
+        <a href="@Url.Action("ThemVaoGioHang", "GioHang", new { id = sach.MaSach})">
+            @sach.TenSach
+        </a>
+    }
+</div>
