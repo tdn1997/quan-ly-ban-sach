@@ -1,0 +1,8 @@
+﻿@model IEnumerable<QuanLyBanSach.Models.NhaXuatBan>
+
+@foreach (var nxb in Model)
+{
+    <option value="@nxb.MaNXB">
+        @nxb.TenNXB
+    </option>
+}

@@ -1,0 +1,21 @@
+﻿<div class="container nguoi-dung d-flex justify-content-end p-2">
+    @if (Model != null)
+    {
+        <div>
+            @Model.HoTen
+        </div>
+        <a class="ml-2" href="@Url.Action("DangXuat", "NguoiDung")">
+            <div>Đăng xuất</div>
+        </a>
+    }
+    else
+    {
+        <a class="ml-2" href="@Url.Action("DangNhap", "NguoiDung")">
+            <div>Đăng nhập</div>
+        </a>
+        <a class="ml-2" href="@Url.Action("DangKy", "NguoiDung")">
+            <div>Đăng ký</div>
+        </a>
+    }
+
+</div>

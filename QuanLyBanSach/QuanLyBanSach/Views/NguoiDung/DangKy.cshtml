@@ -5,102 +5,100 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DangKy</h2>
-
-@using (Html.BeginForm("POST")) 
+@using (Html.BeginForm("POST"))
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Đăng ký Thành Viên</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.HoTen, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
-            <div class="text-danger">
-                @ViewData["LoiHoTen"]
+
+    <h2 class="text-center mt-3">Đăng ký Thành Viên</h2>
+    <hr/>
+    <div class="form-horizontal d-flex flex-column justify-content-center align-items-center">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group d-flex align-items-center justify-content-between">
+            @Html.LabelFor(model => model.HoTen, "Họ Tên", htmlAttributes: new { @class = "control-label flex-grow-1" })
+
+            <div class="flex-grow-1">
+                @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="text-danger">
+                    @ViewData["LoiHoTen"]
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.TaiKhoan, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
-            <div class="text-danger">
-                @ViewData["LoiTaiKhoan"]
+        <div class="form-group d-flex align-items-center justify-content-between">
+            @Html.LabelFor(model => model.TaiKhoan, "Tài Khoản", htmlAttributes: new { @class = "control-label flex-grow-1" })
+            <div class="flex-grow-1">
+                @Html.EditorFor(model => model.TaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="text-danger">
+                    @ViewData["LoiTaiKhoan"]
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input class="form-control text-box single-line" id="MatKhau" name="MatKhau" type="password" value=""/>
-            <div class="text-danger">
-                @ViewData["LoiMatKhau"]
+        <div class="form-group d-flex align-items-center justify-content-between">
+            @Html.LabelFor(model => model.MatKhau, "Mật Khẩu", htmlAttributes: new { @class = "control-label flex-grow-1" })
+            <div class="flex-grow-1">
+                <input class="form-control text-box single-line" id="MatKhau" name="MatKhau" type="password" value="" />
+                <div class="text-danger">
+                    @ViewData["LoiMatKhau"]
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2" for="nhapLaiMatKhau">
-            Nhập lại mật khẩu
-        </label>
-        <div class="col-md-10">
-            <input class="form-control text-box single-line" id="MatKhau" name="MatKhauNhapLai" type="password" value=""/>
-            <div class="text-danger">
-                @ViewData["LoiMatKhauNhapLai"]
+        <div class="form-group d-flex align-items-center justify-content-between">
+            <label class="control-label flex-grow-1" for="nhapLaiMatKhau">
+                Nhập lại mật khẩu
+            </label>
+            <div class="flex-grow-1">
+                <input class="form-control text-box single-line" id="MatKhau" name="MatKhauNhapLai" type="password" value="" />
+                <div class="text-danger">
+                    @ViewData["LoiMatKhauNhapLai"]
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-            <div class="text-danger">
-                @ViewData["LoiEmail"]
+        <div class="form-group d-flex align-items-center justify-content-between">
+            @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label flex-grow-1" })
+            <div class="flex-grow-1">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="text-danger">
+                    @ViewData["LoiEmail"]
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.DiaChiKH, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DiaChiKH, new { htmlAttributes = new { @class = "form-control" } })
-            <div class="text-danger">
-                @ViewData["LoiDiaChiKH"]
+        <div class="form-group d-flex align-items-center justify-content-between">
+            @Html.LabelFor(model => model.DiaChiKH, "Địa chỉ", htmlAttributes: new { @class = "control-label flex-grow-1" })
+            <div class="flex-grow-1">
+                @Html.EditorFor(model => model.DiaChiKH, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="text-danger">
+                    @ViewData["LoiDiaChiKH"]
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.DienThoaiKH, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DienThoaiKH, new { htmlAttributes = new { @class = "form-control" } })
-            <div class="text-danger">
-                @ViewData["LoiDienThoaiKH"]
+        <div class="form-group d-flex align-items-center justify-content-between">
+            @Html.LabelFor(model => model.DienThoaiKH, "Điện thoại", htmlAttributes: new { @class = "control-label flex-grow-1" })
+            <div class="flex-grow-1">
+                @Html.EditorFor(model => model.DienThoaiKH, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="text-danger">
+                    @ViewData["LoiDienThoaiKH"]
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.NgaySinh, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input class="form-control" data-val="true" data-val-date="The field NgaySinh must be a date." id="NgaySinh" name="NgaySinh" type="date" value="" />
-            <div class="text-danger">
-                @ViewData["LoiNgaySinh"]
+        <div class="form-group d-flex align-items-center justify-content-between">
+            @Html.LabelFor(model => model.NgaySinh, "Ngày sinh", htmlAttributes: new { @class = "control-label flex-grow-1" })
+            <div class="flex-grow-1">
+                <input class="form-control" data-val="true" data-val-date="The field NgaySinh must be a date." id="NgaySinh" name="NgaySinh" type="date" value="" />
+                <div class="text-danger">
+                    @ViewData["LoiNgaySinh"]
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group d-flex align-items-center justify-content-between">
+            <input type="submit" value="Đăng ký" class="btn btn-primary btn-block" />
         </div>
     </div>
-</div>
 }

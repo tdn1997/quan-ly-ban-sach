@@ -74,7 +74,7 @@ namespace QuanLyBanSach.Controllers
 
             if (listGioHang.Count == 0)
             {
-                return RedirectToAction("Index", "Sach");
+                //return RedirectToAction("Index", "Sach");
             }
             ViewBag.TongSoLuong = TongSoLuong();
             ViewBag.TongTien = TongTien();
@@ -130,6 +130,57 @@ namespace QuanLyBanSach.Controllers
             listGioHang.Clear();
 
             return RedirectToAction("Index", "Sach");
+        }
+
+        public ActionResult DatHang()
+        {
+            if (Session["TaiKhoan"] == null)
+            {
+                return RedirectToAction("DangNhap", "NguoiDung");
+            }
+            if (Session["GioHang"] == null)
+            {
+                return RedirectToAction("Index", "GioHang");
+            }
+
+            List<GioHang> listGioHang = LayGioHang();
+
+            ViewBag.TongSoLuong = TongSoLuong();
+            ViewBag.TongTien = TongTien();
+
+            return View(listGioHang);
+        }
+
+        [HttpPost]
+        public ActionResult DatHang(FormCollection collection) {
+            DonDatHang ddh = new DonDatHang();
+            KhachHang kh = (KhachHang)Session["TaiKhoan"];
+            List<GioHang> gh = LayGioHang();
+            ddh.MaKH = kh.MaKH;
+            ddh.NgayDat = DateTime.Now;
+
+            var ngayGiao = String.Format("{0:MM/dd/yyyy}", collection["ngayGiao"]);
+            ddh.NgayGiao = DateTime.Parse(ngayGiao);
+            ddh.TinhTrangGiaoHang = false;
+            ddh.DaThanhToan = false;
+            data.DonDatHangs.InsertOnSubmit(ddh);
+            data.SubmitChanges();
+            // thêm chi tiết đơn hàng
+            foreach (var item in gh) {
+                ChiTietDonDatHang ctdh = new ChiTietDonDatHang();
+                ctdh.MaDonHang = ddh.MaDonHang;
+                ctdh.MaSach = item.MaSach;
+                ctdh.SoLuong = item.SoLuong;
+                ctdh.DonGia = (decimal)item.DonGia;
+                data.ChiTietDonDatHangs.InsertOnSubmit(ctdh);
+            }
+            data.SubmitChanges();
+            Session["GioHang"] = null;
+            return RedirectToAction("XacNhanDonHang", "GioHang");
+        }
+
+        public ActionResult XacNhanDonHang() {
+            return View();
         }
 
     }

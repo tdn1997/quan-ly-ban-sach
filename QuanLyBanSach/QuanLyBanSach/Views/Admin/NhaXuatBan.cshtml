@@ -1,0 +1,73 @@
+﻿@model IEnumerable<QuanLyBanSach.Models.NhaXuatBan>
+
+@{
+    ViewBag.Title = "NhaXuatBan";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>NhaXuatBan</h2>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#themNhaXuatBanModal">
+    Thêm Nhà xuất bản
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="themNhaXuatBanModal" tabindex="-1" aria-labelledby="themNhaXuatBanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="themChuDeModalLabel">Thêm chủ đề</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm())
+                {
+                    <div>
+                        <label for="tenNhaXuatBan">
+                            Tên Nhà xuất bản
+                        </label>
+                        <input id="tenNhaXuatBan" name="tenNhaXuatBan" />
+                        @ViewData["LoiTenNhaXuatBan"]
+                    </div>
+                    <div>
+                        <label for="diaChiNhaXuatBan">
+                            Địa chỉ Nhà xuất bản
+                        </label>
+                        <input id="diaChiNhaXuatBan" name="diaChiNhaXuatBan" />
+                        @ViewData["LoiDiaChiNhaXuatBan"]
+                    </div>
+                    <div>
+                        <label for="dienThoaiNhaXuatBan">
+                            Điện thoại Nhà xuất bản
+                        </label>
+                        <input id="dienThoaiNhaXuatBan" name="dienThoaiNhaXuatBan" />
+                        @ViewData["LoiDienThoaiNhaXuatBan"]
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Lưu Nhà xuất bản</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    @ViewBag.ThongBao
+</h3>
+
+<div class="grid">
+    @foreach (var nxb in Model)
+    {
+        <div>
+            <h3>@nxb.TenNXB</h3>
+            <p>@nxb.MaNXB</p>
+            <p>@nxb.DienThoai</p>
+            <p>@nxb.DiaChi</p>
+        </div>
+    }
+</div>

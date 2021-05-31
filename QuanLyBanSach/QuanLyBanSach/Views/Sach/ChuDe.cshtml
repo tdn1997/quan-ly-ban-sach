@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<QuanLyBanSach.Models.ChuDe>
 
 
-<div>
-    <h2>Chu De</h2>
+<div class="danh-sach-chude">
     @foreach (var chuDe in Model)
     {
-        <a href="@Url.Action("SachTheoChuDe", "Sach", new { id = chuDe.MaCD })">
-            @chuDe.MaCD
-        </a>
+        <div class="item">
+            <a href="@Url.Action("SachTheoChuDe", "Sach", new { id = chuDe.MaCD })">
+                @chuDe.TenChuDe
+            </a>
+        </div>
     }
 </div>
-

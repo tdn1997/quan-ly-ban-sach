@@ -1,0 +1,41 @@
+﻿@model IEnumerable<QuanLyBanSach.Models.Sach>
+
+@{
+    ViewBag.Title = "Tìm kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+@if (Model.Count() == 0)
+{
+    <div class="text-center mt-3 text-muted font-weight-bold">
+        Không tìm thấy kết quả
+    </div>
+}
+else
+{
+    <div class="grid">
+        @foreach (var sach in Model)
+        {
+            <div class="sach">
+                <div title="Chủ đề" class="sach-chude">@Html.Action("ChuDeTheoId", "Sach", new { id = sach.MaCD })</div>
+                <a href="@Url.Action("ChiTietSach", "Sach", new { id = sach.MaSach })">
+                    <img src="/assets/upload/@(sach.AnhBia == "" ? "default-book.jpg" : sach.AnhBia)" class="sach-anhbia" />
+                </a>
+                <a href="@Url.Action("ChiTietSach", "Sach", new { id = sach.MaSach })">
+                    <h3 class="sach-tensach mt-3" title="@sach.TenSach">@sach.TenSach</h3>
+                </a>
+                <div title="Nhà xuất bản" class="sach-nxb">@Html.Action("NXBTheoId", "Sach", new { id = sach.MaNXB })</div>
+                <hr />
+                <div class="d-flex justify-content-between">
+                    <span>@string.Format("{0:#,###.##}đ", sach.GiaBan)</span>
+                    <a class="btn dat-mua" href="@Url.Action("ThemGioHang", "GioHang", new { @MaSach = sach.MaSach, @strUrl = Request.Url.ToString()})">
+                        Đặt mua
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}
+

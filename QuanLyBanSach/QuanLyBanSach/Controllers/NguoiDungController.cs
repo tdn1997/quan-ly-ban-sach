@@ -111,6 +111,7 @@ namespace QuanLyBanSach.Controllers
                 {
                     ViewBag.ThongBao = "Đăng nhập thành công";
                     Session["TaiKhoan"] = kh;
+                    return Redirect("/");
                 }
                 else
                 {
@@ -118,6 +119,21 @@ namespace QuanLyBanSach.Controllers
                 }
             }
             return View();
+        }
+
+        public ActionResult NguoiDung()
+        {
+            var kh = Session["TaiKhoan"];
+
+            ViewBag.ThongBao = kh != null ? "Đăng nhập thành công" : "";
+
+            return PartialView(kh);
+        }
+        public ActionResult DangXuat()
+        {
+            Session["TaiKhoan"] = null;
+
+            return RedirectToAction("Index", "Sach");
         }
     }
 }

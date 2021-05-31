@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Duy Thuận - Nguyễn Tấn Tài</title>
+    <link rel="icon" href="~/assets/favicon_io/favicon.ico" />
+    <link href="~/Content/font-families.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheetAdmin.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="nav-link" href="@Url.Action("Index", "Admin")">
+                Trang chủ
+            </a>
+            <a class="nav-link" href="@Url.Action("ChuDe", "Admin")">
+                Quản lý Chủ Đề
+            </a>
+            <a class="nav-link" href="@Url.Action("NhaXuatBan", "Admin")">
+                Quản lý Nhà Xuất Bản
+            </a>
+            <a class="nav-link" href="@Url.Action("Sach", "Admin")">
+                Quản lý Sách
+            </a>
+        </div>
+    </section>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year</p>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

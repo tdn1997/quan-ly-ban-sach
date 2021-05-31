@@ -1,4 +1,8 @@
-﻿@model IEnumerable<QuanLyBanSach.Models.Sach>
+﻿@using QuanLyBanSach.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Sach>
+
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,10 +11,29 @@
 <div class="grid">
     @foreach (var sach in Model)
     {
-        <a class="book" href="@Url.Action("ChiTietSach", "Sach", new { id = sach.MaSach })">
-            <h3>@sach.TenSach</h3>
-            <p>@sach.GiaBan</p>
-        </a>
+        <div class="sach">
+            <div title="Chủ đề" class="sach-chude">@Html.Action("ChuDeTheoId", "Sach", new { id = sach.MaCD })</div>
+            <a href="@Url.Action("ChiTietSach", "Sach", new { id = sach.MaSach })">
+                <img src="/assets/upload/@(sach.AnhBia == "" ? "default-book.jpg" : sach.AnhBia)" class="sach-anhbia" />
+            </a>
+            <a href="@Url.Action("ChiTietSach", "Sach", new { id = sach.MaSach })">
+                <h3 class="sach-tensach mt-3" title="@sach.TenSach">@sach.TenSach</h3>
+            </a>
+            <div title="Nhà xuất bản" class="sach-nxb">@Html.Action("NXBTheoId", "Sach", new { id = sach.MaNXB })</div>
+            <hr />
+            <div class="d-flex justify-content-between">
+                <span>@string.Format("{0:#,###.##}đ", sach.GiaBan)</span>
+                <a class="btn dat-mua" href="@Url.Action("ThemGioHang", "GioHang", new { @MaSach = sach.MaSach, @strUrl = Request.Url.ToString()})">
+                    Đặt mua
+                </a>
+            </div>
+        </div>
     }
 </div>
-
+<div class="trang">
+    @* Tạo liên kết các trang *@
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { trang = page }))
+    </div>
+</div>

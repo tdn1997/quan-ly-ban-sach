@@ -133,6 +133,8 @@ C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSac
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\Newtonsoft.Json.dll
+C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\PagedList.dll
+C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\PagedList.Mvc.dll
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\System.Web.Helpers.dll
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\System.Web.Mvc.dll
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\System.Web.Optimization.dll
@@ -141,6 +143,8 @@ C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSac
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\System.Web.WebPages.dll
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\System.Web.WebPages.Razor.dll
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\WebGrease.dll
+C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\PagedList.xml
+C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\PagedList.Mvc.xml
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\System.Web.Helpers.xml
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\System.Web.Mvc.xml
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\System.Web.Optimization.xml
@@ -151,7 +155,6 @@ C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSac
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\Newtonsoft.Json.xml
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\Antlr3.Runtime.pdb
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\obj\Debug\QuanLyBanSach.csprojAssemblyReference.cache
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\obj\Debug\QuanLyBanSach.csproj.CoreCompileInputs.cache
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\obj\Debug\QuanLyBanSach.csproj.CopyComplete
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\obj\Debug\QuanLyBanSach.dll

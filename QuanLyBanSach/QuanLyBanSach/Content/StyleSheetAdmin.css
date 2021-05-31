@@ -1,0 +1,258 @@
+﻿.navbar {
+    position: sticky;
+    top: 0;
+    padding: 0;
+    background-color: #1b1a17 !important;
+    box-shadow: 1px 1px 4px 2px rgb(0 0 0 / 20%) !important;
+    display: flex;
+    justify-content: space-between;
+    max-height: 68px;
+    z-index: 500;
+}
+
+.nav-link {
+    font-size: 18px;
+    font-weight: 500;
+    color: #f2f1e7 !important;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-brand {
+    height: 75px;
+    width: 75px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../assets/logo.png');
+}
+
+.brand, .brand:hover {
+    font-size: 18px;
+    color: #f2f1e7;
+    padding: 12px;
+    line-height: 52px;
+    color: #f2f1e7;
+    text-decoration: none;
+}
+
+.nav-chude, .nav-nxb {
+    position: relative;
+    padding: 12px;
+}
+
+    .nav-chude:hover .danh-sach-chude {
+        display: flex;
+    }
+
+
+    .nav-nxb:hover .danh-sach-nxb {
+        display: flex;
+    }
+
+.danh-sach-chude, .danh-sach-nxb {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #1b1a17 !important;
+}
+
+    .danh-sach-chude .item, .danh-sach-nxb .item {
+        padding: 6px 12px;
+    }
+
+    .danh-sach-chude a, .danh-sach-nxb a {
+        color: #eee;
+    }
+
+    .danh-sach-chude .item:hover, .danh-sach-nxb .item:hover {
+        background-color: #00adb5;
+    }
+
+        .danh-sach-chude .item:hover a, .danh-sach-nxb .item:hover a {
+            color: #1b1a17;
+        }
+
+.btn-search {
+    background-color: #00adb5;
+    color: #fff;
+}
+
+.banner {
+    height: 400px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../assets/banner.png');
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 576px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 992px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+@media (min-width: 1366px) {
+    .container {
+        max-width: 1366px;
+    }
+}
+
+@media (min-width: 1414px) {
+    .container {
+        max-width: 1414px;
+    }
+}
+
+.grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 328px);
+    grid-auto-rows: 496px;
+    grid-gap: 24px;
+    padding: 24px 0;
+}
+
+.grid-custom {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 328px);
+    grid-gap: 24px;
+    white-space: nowrap;
+}
+
+.sach {
+    min-width: 328px;
+    max-width: 328px;
+    max-height: 496px;
+    max-height: 496px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.1);
+    padding: 16px;
+    color: #5c4d4d !important;
+}
+
+
+
+.sach-chude {
+    border-bottom: 1px solid #f2f1e7;
+    padding-bottom: 12px;
+    line-height: 1;
+}
+
+.sach-nxb {
+    width: 296px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sach-tensach {
+    width: 296px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sach-anhbia {
+    min-width: 296px;
+    max-width: 296px;
+    min-height: 296px;
+    max-height: 296px;
+}
+
+.dat-mua {
+    background-color: #4aa96c;
+    color: #fff !important;
+}
+
+.footer {
+    min-height: 100px;
+}
+
+.gio-hang {
+    position: fixed;
+    top: 30%;
+    right: 0;
+    padding: 6px 12px;
+    border-radius: 8px 0 0 8px;
+    background: #ff0800;
+    z-index: 500;
+    box-shadow: 2px 1px 2px 1px rgb(0 0 0 / 50%);
+}
+
+    .gio-hang > a {
+        color: white;
+        text-decoration: none;
+    }
+
+.logo-gio-hang {
+    width: 20px;
+    height: 16px;
+}
+
+.MenuTrang li {
+    display: inline;
+}
+
+.trang {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.chi-tiet-sach {
+    min-width: 680px;
+    max-width: 680px;
+    display: flex;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.1);
+    padding: 16px;
+    color: #5c4d4d !important;
+}
+
+.chi-tiet-sach-anh-bia {
+    height: 496px;
+    width: 328px;
+}
+
+.chi-tiet-sach-content {
+    padding-left: 24px;
+}
+
+.chi-tiet-sach-chude {
+}
+
+.control-label {
+    max-width: 250px;
+}

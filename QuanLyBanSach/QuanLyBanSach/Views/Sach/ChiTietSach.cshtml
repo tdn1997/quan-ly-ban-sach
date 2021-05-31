@@ -4,14 +4,43 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ChiTietSach</h2>
+<div class="container d-flex justify-content-center p-4">
+    <div class="chi-tiet-sach">
+        <img src="/assets/upload/@(Model.AnhBia == "" ? "default-book.jpg" : Model.AnhBia)" class="chi-tiet-sach-anh-bia" />
+        <div class="chi-tiet-sach-content">
 
-<div>
-    @Model.TenSach
-</div>
+            <h3 class="sach-tensach" title="@Model.TenSach">@Model.TenSach</h3>
+            <div class="chi-tiet-sach-chude mt-3">Chủ đề: @Html.Action("ChuDeTheoId", "Sach", new { id = Model.MaCD })</div>
+            <div class="sach-nxb mt-3">Nhà xuất bản: @Html.Action("NXBTheoId", "Sach", new { id = Model.MaNXB })</div>
+            <p class="sach-mota mt-3">Mô tả: @Model.MoTa</p>
+            <p class="sach-ngaycapnhat mt-3">Ngày cập nhật: @Model.NgayCapNhat.ToString("dd/MM/yyyy")</p>
+            <p class="sach-ngaycapnhat mt-3">Còn lại: @Model.SoLuongTon sản phẩm</p>
+            <div>Giá: @string.Format("{0:#,###.##}đ", Model.GiaBan)</div>
+            @if (@Model.SoLuongTon > 1)
+            {
 
-<div>
-    <a href="@Url.Action("ThemGioHang", "GioHang", new { @MaSach = @Model.MaSach, @strUrl = Request.Url.ToString()})">
-        Đặt mua
-    </a>
+                <a class="btn dat-mua mt-3" href="@Url.Action("ThemGioHang", "GioHang", new { @MaSach = Model.MaSach, @strUrl = Request.Url.ToString()})">
+                    Đặt mua
+                </a>
+            }
+            else
+            {
+                <div class="badge-danger p-2 mt-3 text-center">Sản phẩm tạm thời Hết hàng</div>
+            }
+        </div>
+    </div>
 </div>
+<hr />
+<section>
+    <h2 class="grid-custom mt-4">
+        Sách cùng Chủ đề
+    </h2>
+    @Html.Action("SachTheoChuDePartial", "Sach", new { @id = Model.MaCD })
+</section>
+<hr/>
+<section>
+    <h2 class="grid-custom mt-4">
+        Sách cùng Nhà xuất bản
+    </h2>
+    @Html.Action("SachTheoNXBPartial", "Sach", new { @id = Model.MaNXB })
+</section>

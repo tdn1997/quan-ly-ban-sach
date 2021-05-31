@@ -1,0 +1,108 @@
+﻿@using QuanLyBanSach.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Sach>
+
+@{
+    ViewBag.Title = "Sach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#themNhaXuatBanModal">
+    Thêm Nhà xuất bản
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="themNhaXuatBanModal" tabindex="-1" aria-labelledby="themNhaXuatBanModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="themChuDeModalLabel">Thêm chủ đề</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Sach", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div>
+                        <label for="tenSach">
+                            Tên Sách
+                        </label>
+                        <input id="tenSach" name="tenSach" />
+                    </div>
+                    <div>
+                        <label for="giaBan">
+                            Giá Bán
+                        </label>
+                        <input id="giaBan" name="giaBan" />
+                    </div>
+                    <div>
+                        <label for="moTa">
+                            Mô tả
+                        </label>
+                        <input id="moTa" name="moTa" />
+                    </div>
+                    <div>
+                        <label for="fileAnhBia">
+                            Ảnh bìa
+                        </label>
+                        <input id="fileAnhBia" name="fileAnhBia" type="file" />
+                    </div>
+                    <div>
+                        <label for="soLuongTon">
+                            Số lượng
+                        </label>
+                        <input id="soLuongTon" name="soLuongTon" />
+                    </div>
+                    <div>
+                        <label for="chuDe">
+                            Chủ đề
+                        </label>
+                        @Html.DropDownList("MaCD")
+                    </div>
+                    <div>
+                        <label for="nhaXuatBan">
+                            Nhà xuất bản
+                        </label>
+                        @Html.DropDownList("MaNXB")
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Lưu Nhà xuất bản</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>
+    @ViewBag.ThongBao
+</h3>
+
+<div class="grid">
+    @foreach (var sach in Model)
+    {
+        <a class="book" href="@Url.Action("ChiTietSach", "Sach", new { id = sach.MaSach })">
+            <h3>@sach.TenSach</h3>
+            <p>@sach.GiaBan</p>
+        </a>
+    }
+</div>
+<div>
+    @* Tạo liên kết các trang *@
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Sach", new { trang = page }))
+    </div>
+</div>
+
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+

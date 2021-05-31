@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -121,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\SachController.cs" />
@@ -136,13 +143,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\banner.png" />
+    <Content Include="assets\cart.png" />
+    <Content Include="assets\upload\default-book.jpg" />
+    <Content Include="assets\favicon_io\android-chrome-192x192.png" />
+    <Content Include="assets\favicon_io\android-chrome-512x512.png" />
+    <Content Include="assets\favicon_io\apple-touch-icon.png" />
+    <Content Include="assets\favicon_io\favicon-16x16.png" />
+    <Content Include="assets\favicon_io\favicon-32x32.png" />
+    <Content Include="assets\favicon_io\favicon.ico" />
+    <Content Include="assets\logo.png" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-families.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\StyleSheet.css" />
+    <Content Include="Content\StyleSheetAdmin.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\style.css" />
-    <Content Include="images\logo.png" />
     <Content Include="fonts\Roboto-Black.ttf" />
     <Content Include="fonts\Roboto-BlackItalic.ttf" />
     <Content Include="fonts\Roboto-Bold.ttf" />
@@ -166,6 +184,7 @@
       <LastGenOutput>QuanLyBanSach.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="assets\favicon_io\site.webmanifest" />
     <None Include="Models\QuanLyBanSach.dbml.layout">
       <DependentUpon>QuanLyBanSach.dbml</DependentUpon>
     </None>
@@ -184,6 +203,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -194,7 +214,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Sach\ChuDe.cshtml" />
     <Content Include="Views\Sach\Index.cshtml" />
@@ -206,6 +226,21 @@
     <Content Include="Views\NguoiDung\DangNhap.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
+    <Content Include="Views\NguoiDung\NguoiDung.cshtml" />
+    <Content Include="Views\GioHang\DatHang.cshtml" />
+    <Content Include="Views\GioHang\XacNhanDonHang.cshtml" />
+    <Content Include="Views\Admin\DangNhap.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Sach.cshtml" />
+    <Content Include="Views\Admin\ChuDe.cshtml" />
+    <Content Include="Views\Admin\NhaXuatBan.cshtml" />
+    <Content Include="Views\Admin\ChonChuDe.cshtml" />
+    <Content Include="Views\Admin\ChonNhaXuatBan.cshtml" />
+    <Content Include="Views\Sach\ChuDeTheoId.cshtml" />
+    <Content Include="Views\Sach\NXBTheoId.cshtml" />
+    <Content Include="Views\Sach\SachTheoNXBPartial.cshtml" />
+    <Content Include="Views\Sach\SachTheoChuDePartial.cshtml" />
+    <Content Include="Views\Sach\Tim.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

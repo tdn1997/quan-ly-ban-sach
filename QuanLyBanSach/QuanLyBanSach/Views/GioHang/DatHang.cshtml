@@ -1,0 +1,142 @@
+﻿@using QuanLyBanSach.Models;
+@model List<GioHang>
+
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-3">
+
+    <h2>Thông tin hàng hóa</h2>
+
+    <table class="table">
+        <tr>
+            <td>
+                Mã sách
+            </td>
+            <td>
+                Tên sách
+            </td>
+            <td>
+                Ảnh bìa
+            </td>
+            <td>
+                Số lượng
+            </td>
+            <td>
+                Đơn giá
+            </td>
+            <td>
+                Thành tiền
+            </td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.MaSach
+                </td>
+                <td>
+                    @item.TenSach
+                </td>
+                <td>
+                    <img src="@item.AnhBia" />
+                </td>
+                @using (Html.BeginForm("CapNhat", "GioHang", new { id = item.MaSach }))
+                {
+                    <td>
+                        @item.SoLuong
+                    </td>
+                    <td>
+                        @String.Format("{0:0,0}", item.DonGia)
+                    </td>
+                    <td>
+                        @String.Format("{0:0,0}", item.ThanhTien)
+                    </td>
+                }
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <b>Số lượng sách: @ViewBag.TongSoLuong</b>
+            </td>
+            <td>
+                <b>Tổng tiền: @String.Format("{0:0,0}", ViewBag.TongTien) đ</b>
+            </td>
+        </tr>
+    </table>
+    <a class="btn-link" href="@Url.Action("Index", "GioHang")">
+        Trở về giỏ hàng
+    </a>
+</div>
+
+<hr />
+<div class="container">
+
+    <h2>
+        Thông tin đặt hàng
+    </h2>
+
+    @{
+        KhachHang kh = (KhachHang)Session["TaiKhoan"];
+    }
+
+    <table class="table">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+
+            <tr>
+                <td>
+                    Họ tên khách hàng:
+                </td>
+                <td>
+                    @kh.HoTen
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Địa chỉ:
+                </td>
+                <td>
+                    @kh.DiaChiKH
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Điện thoại:
+                </td>
+                <td>
+                    @kh.DienThoaiKH
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ngày đặt:
+                </td>
+                <td>
+                    @DateTime.Now.ToShortDateString()
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ngày giao hàng:
+                </td>
+                <td>
+                    <input type="date" name="ngayGiao" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input class="btn btn-success btn-lg" type="submit" value="Đồng ý đặt hàng" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
