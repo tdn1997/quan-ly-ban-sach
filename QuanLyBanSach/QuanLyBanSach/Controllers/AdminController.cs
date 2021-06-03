@@ -66,6 +66,21 @@ namespace QuanLyBanSach.Controllers
             }
             return View();
         }
+        public ActionResult AdminPartial()
+        {
+            var admin = Session["TaiKhoanAdmin"];
+
+            ViewBag.ThongBao = admin != null ? "Đăng nhập thành công" : "";
+
+            return PartialView(admin);
+        }
+
+        public ActionResult DangXuat()
+        {
+            Session["TaiKhoanAdmin"] = null;
+
+            return RedirectToAction("DangNhap", "Admin");
+        }
 
         [HttpPost]
         public ActionResult Sach(FormCollection collection, Sach sach, HttpPostedFileBase fileAnhBia, int? trang)
@@ -80,7 +95,7 @@ namespace QuanLyBanSach.Controllers
             if (fileAnhBia != null)
             {
                 var tenFile = Path.GetFileName(fileAnhBia.FileName);
-                var path = Path.Combine(Server.MapPath("~/assets"), tenFile);
+                var path = Path.Combine(Server.MapPath("~/assets/upload"), tenFile);
                 if (System.IO.File.Exists(path))
                 {
                     ViewBag.ThongBao = "Hình ảnh đã tồn tại";
@@ -131,7 +146,7 @@ namespace QuanLyBanSach.Controllers
             }
 
             // số sách mỗi trang
-            int soLuongSach = 5;
+            int soLuongSach = 8;
             // số trang
             int soTrang = (trang ?? 1);
 
@@ -140,6 +155,90 @@ namespace QuanLyBanSach.Controllers
 
             var listSach = this.data.Saches.OrderByDescending(a => a.NgayCapNhat).ToList();
             return View(listSach.ToPagedList(soTrang, soLuongSach));
+        }
+        [HttpPost]
+        public ActionResult SuaSach(FormCollection collection, HttpPostedFileBase fileAnhBia)
+        {
+            var kh = Session["TaiKhoanAdmin"];
+
+            if (kh == null)
+            {
+                return RedirectToAction("Index", "Sach");
+            }
+
+            if (fileAnhBia != null)
+            {
+                var tenFile = Path.GetFileName(fileAnhBia.FileName);
+                var path = Path.Combine(Server.MapPath("~/assets/upload"), tenFile);
+                if (System.IO.File.Exists(path))
+                {
+                    ViewBag.ThongBao = "Hình ảnh đã tồn tại";
+                }
+                else
+                {
+                    fileAnhBia.SaveAs(path);
+                }
+
+            }
+
+            var maSach = collection["MaSach"];
+            var sach = this.data.Saches.SingleOrDefault(a => a.MaSach == Convert.ToInt32(maSach));
+
+            var tenSach = collection["TenSach"];
+            var giaBan = collection["GiaBan"];
+            var moTa = collection["MoTa"];
+            var anhBia = fileAnhBia == null ? sach.AnhBia : fileAnhBia.FileName;
+            var soLuongTon = collection["SoLuongTon"];
+            var maCD = collection["MaCD"];
+            var maNXB = collection["MaNXB"];
+
+
+
+            if (
+                String.IsNullOrEmpty(tenSach)
+                || String.IsNullOrEmpty(giaBan)
+                || String.IsNullOrEmpty(moTa)
+                || String.IsNullOrEmpty(anhBia)
+                || String.IsNullOrEmpty(soLuongTon)
+                || String.IsNullOrEmpty(maCD)
+                || String.IsNullOrEmpty(maNXB)
+            )
+            {
+                ViewData["Loi"] = "Xin nhập đầy đủ thông tin";
+            }
+            else
+            {
+                sach.TenSach = tenSach;
+                sach.GiaBan = int.Parse(giaBan);
+                sach.MoTa = moTa;
+                sach.AnhBia = anhBia;
+                sach.SoLuongTon = int.Parse(soLuongTon);
+                sach.MaNXB = int.Parse(maNXB);
+                sach.MaCD = int.Parse(maCD);
+                sach.NgayCapNhat = DateTime.Now;
+
+                UpdateModel(sach);
+                data.SubmitChanges();
+                ViewBag.ThongBao = "Sửa Sách thành công!";
+                return RedirectToAction("Sach", "Admin");
+            }
+
+            return View(sach);
+        }
+        public ActionResult SuaSach(int id)
+        {
+            var kh = Session["TaiKhoanAdmin"];
+
+            if (kh == null)
+            {
+                return RedirectToAction("Index", "Sach");
+            }
+
+            ViewBag.MaCD = new SelectList(data.ChuDes.ToList().OrderBy(n => n.TenChuDe), "MaCD", "TenChuDe");
+            ViewBag.MaNXB = new SelectList(data.NhaXuatBans.ToList().OrderBy(n => n.TenNXB), "MaNXB", "TenNXB");
+
+            var sach = this.data.Saches.SingleOrDefault(a => a.MaSach == id);
+            return View(sach);
         }
         public ActionResult Sach(int? trang)
         {
@@ -151,7 +250,7 @@ namespace QuanLyBanSach.Controllers
             }
 
             // số sách mỗi trang
-            int soLuongSach = 5;
+            int soLuongSach = 8;
             // số trang
             int soTrang = (trang ?? 1);
 
@@ -160,6 +259,20 @@ namespace QuanLyBanSach.Controllers
 
             var listSach = this.data.Saches.OrderByDescending(a => a.NgayCapNhat).ToList();
             return View(listSach.ToPagedList(soTrang, soLuongSach));
+        }
+        public ActionResult XoaSach(int id)
+        {
+            var kh = Session["TaiKhoanAdmin"];
+
+            if (kh == null)
+            {
+                return RedirectToAction("Index", "Sach");
+            }
+            var sach = this.data.Saches.SingleOrDefault(s => s.MaSach == id);
+            this.data.Saches.DeleteOnSubmit(sach);
+            this.data.SubmitChanges();
+
+            return RedirectToAction("Sach");
         }
 
         [HttpPost]
@@ -199,6 +312,62 @@ namespace QuanLyBanSach.Controllers
 
             var listChuDe = this.data.ChuDes.ToList();
             return View(listChuDe);
+        }
+        public ActionResult SuaChuDe(int id)
+        {
+            var kh = Session["TaiKhoanAdmin"];
+
+            if (kh == null)
+            {
+                return RedirectToAction("Index", "Sach");
+            }
+
+            var chuDe = this.data.ChuDes.SingleOrDefault(cd => cd.MaCD == id);
+            return View(chuDe);
+        }
+        [HttpPost]
+        public ActionResult SuaChuDe(FormCollection collection)
+        {
+            var kh = Session["TaiKhoanAdmin"];
+
+            if (kh == null)
+            {
+                return RedirectToAction("Index", "Sach");
+            }
+
+            var tenChuDe = collection["TenChuDe"];
+            var maCD = collection["MaCD"];
+
+            ChuDe cd = this.data.ChuDes.SingleOrDefault(item => item.MaCD == Convert.ToInt32(maCD));
+
+            if (String.IsNullOrEmpty(tenChuDe))
+            {
+                ViewData["Loi"] = "Xin nhập đầy đủ thông tin";
+            }
+            else
+            {
+                cd.TenChuDe = tenChuDe;
+                UpdateModel(cd);
+                data.SubmitChanges();
+                return RedirectToAction("ChuDe", "Admin");
+            }
+
+            return View(cd);
+        }
+
+        public ActionResult XoaChuDe(int id)
+        {
+            var kh = Session["TaiKhoanAdmin"];
+
+            if (kh == null)
+            {
+                return RedirectToAction("Index", "Sach");
+            }
+            var chuDe = this.data.ChuDes.SingleOrDefault(cd => cd.MaCD == id);
+            this.data.ChuDes.DeleteOnSubmit(chuDe);
+            this.data.SubmitChanges();
+
+            return RedirectToAction("ChuDe");
         }
 
         [HttpPost]
@@ -245,13 +414,72 @@ namespace QuanLyBanSach.Controllers
 
             if (kh == null)
             {
-                return RedirectToAction("Index", "Sach");
+                return RedirectToAction("Index", "NhaXuatBan");
             }
 
             var listNXB = this.data.NhaXuatBans.ToList();
             return View(listNXB);
         }
+        public ActionResult SuaNhaXuatBan(int id)
+        {
+            var kh = Session["TaiKhoanAdmin"];
 
+            if (kh == null)
+            {
+                return RedirectToAction("Index", "NhaXuatBan");
+            }
+
+            var nxb = this.data.NhaXuatBans.SingleOrDefault(n => n.MaNXB == id);
+            return View(nxb);
+        }
+        [HttpPost]
+        public ActionResult SuaNhaXuatBan(FormCollection collection)
+        {
+            var kh = Session["TaiKhoanAdmin"];
+
+            if (kh == null)
+            {
+                return RedirectToAction("Index", "Sach");
+            }
+
+            var maNXB = collection["MaNXB"];
+            var tenNXB = collection["TenNXB"];
+            var diaChi = collection["DiaChi"];
+            var dienThoai = collection["DienThoai"];
+
+            NhaXuatBan nxb = this.data.NhaXuatBans.SingleOrDefault(n => n.MaNXB == Convert.ToInt32(maNXB));
+
+            if (String.IsNullOrEmpty(tenNXB) || String.IsNullOrEmpty(diaChi) || String.IsNullOrEmpty(dienThoai))
+            {
+                ViewData["Loi"] = "Xin nhập đầy đủ thông tin";
+            }
+            else
+            {
+
+                nxb.TenNXB = tenNXB;
+                nxb.DiaChi = diaChi;
+                nxb.DienThoai = dienThoai;
+                UpdateModel(nxb);
+                data.SubmitChanges();
+                return RedirectToAction("NhaXuatBan", "Admin");
+            }
+
+            return View(nxb);
+        }
+        public ActionResult XoaNhaXuatBan(int id)
+        {
+            var kh = Session["TaiKhoanAdmin"];
+
+            if (kh == null)
+            {
+                return RedirectToAction("Index", "NhaXuatBan");
+            }
+            var nxb = this.data.NhaXuatBans.SingleOrDefault(n => n.MaNXB == id);
+            this.data.NhaXuatBans.DeleteOnSubmit(nxb);
+            this.data.SubmitChanges();
+
+            return RedirectToAction("NhaXuatBan");
+        }
         public ActionResult ChonNhaXuatBan()
         {
             var listNXB = this.data.NhaXuatBans.ToList();
@@ -262,5 +490,7 @@ namespace QuanLyBanSach.Controllers
             var listChuDe = this.data.ChuDes.ToList();
             return PartialView(listChuDe);
         }
+
+
     }
 }

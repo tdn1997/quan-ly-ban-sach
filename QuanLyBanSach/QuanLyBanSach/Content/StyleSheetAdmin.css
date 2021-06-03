@@ -256,3 +256,22 @@
 .control-label {
     max-width: 250px;
 }
+
+.nav-link {
+    padding: 12px 0;
+}
+
+#admin-ten {
+    position: relative;
+}
+
+    #admin-ten:hover .admin-context {
+        background: #1b1a17;
+        position: absolute;
+        top: 24px;
+        left: -12px;
+        width: calc(100% + 24px);
+        padding: 12px;
+        display: flex !important;
+        color: #eee;
+    }

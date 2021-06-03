@@ -27,13 +27,14 @@
             <a class="nav-link" href="@Url.Action("Sach", "Admin")">
                 Quản lý Sách
             </a>
+            @Html.Action("AdminPartial", "Admin")
         </div>
     </section>
     <div class="container">
         @RenderBody()
     </div>
     <hr />
-    <footer>
+    <footer class="container footer">
         <p>&copy; @DateTime.Now.Year</p>
     </footer>
 

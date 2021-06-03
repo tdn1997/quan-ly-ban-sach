@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>NhaXuatBan</h2>
-
+<h2 class="mt-3">Nhà xuất bản</h2>
+<hr />
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#themNhaXuatBanModal">
+<button type="button" class="btn btn-primary mt-1" data-toggle="modal" data-target="#themNhaXuatBanModal">
     Thêm Nhà xuất bản
 </button>
 
@@ -17,7 +17,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="themChuDeModalLabel">Thêm chủ đề</h5>
+                <h5 class="modal-title" id="themChuDeModalLabel">Thêm Nhà xuất bản</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -25,29 +25,29 @@
             <div class="modal-body">
                 @using (Html.BeginForm())
                 {
-                    <div>
+                    <div class="form-group">
                         <label for="tenNhaXuatBan">
                             Tên Nhà xuất bản
                         </label>
-                        <input id="tenNhaXuatBan" name="tenNhaXuatBan" />
+                        <input class="form-control" id="tenNhaXuatBan" name="tenNhaXuatBan" />
                         @ViewData["LoiTenNhaXuatBan"]
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="diaChiNhaXuatBan">
                             Địa chỉ Nhà xuất bản
                         </label>
-                        <input id="diaChiNhaXuatBan" name="diaChiNhaXuatBan" />
+                        <input class="form-control" id="diaChiNhaXuatBan" name="diaChiNhaXuatBan" />
                         @ViewData["LoiDiaChiNhaXuatBan"]
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="dienThoaiNhaXuatBan">
                             Điện thoại Nhà xuất bản
                         </label>
-                        <input id="dienThoaiNhaXuatBan" name="dienThoaiNhaXuatBan" />
+                        <input class="form-control" id="dienThoaiNhaXuatBan" name="dienThoaiNhaXuatBan" />
                         @ViewData["LoiDienThoaiNhaXuatBan"]
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <div class="mt-2 d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary mr-2" data-dismiss="modal">Hủy</button>
                         <button type="submit" class="btn btn-primary">Lưu Nhà xuất bản</button>
                     </div>
                 }
@@ -55,19 +55,42 @@
         </div>
     </div>
 </div>
+@if (ViewBag.ThongBao != null)
+{
+    <div class="alert-info text-center p-2 mt-3">
+        @ViewBag.ThongBao
+    </div>
+}
 
-<h3>
-    @ViewBag.ThongBao
-</h3>
+<table class="table table-striped mt-3">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Mã NXB</th>
+            <th scope="col">Tên NXB</th>
+            <th scope="col">Điện thoại</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var nxb in Model)
+        {
+            <tr>
+                <th>@nxb.MaNXB</th>
+                <td>@nxb.TenNXB</td>
+                <td>@nxb.DienThoai</td>
+                <td>@nxb.DiaChi</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary" href="@Url.Action("SuaNhaXuatBan", "Admin", new { id=nxb.MaNXB})">
+                        Sửa
+                    </a>
 
-<div class="grid">
-    @foreach (var nxb in Model)
-    {
-        <div>
-            <h3>@nxb.TenNXB</h3>
-            <p>@nxb.MaNXB</p>
-            <p>@nxb.DienThoai</p>
-            <p>@nxb.DiaChi</p>
-        </div>
-    }
-</div>
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("XoaNhaXuatBan", "Admin", new { id=nxb.MaNXB})">
+                        Xóa
+                    </a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

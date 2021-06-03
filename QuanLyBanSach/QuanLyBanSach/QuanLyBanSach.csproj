@@ -234,13 +234,15 @@
     <Content Include="Views\Admin\Sach.cshtml" />
     <Content Include="Views\Admin\ChuDe.cshtml" />
     <Content Include="Views\Admin\NhaXuatBan.cshtml" />
-    <Content Include="Views\Admin\ChonChuDe.cshtml" />
-    <Content Include="Views\Admin\ChonNhaXuatBan.cshtml" />
     <Content Include="Views\Sach\ChuDeTheoId.cshtml" />
     <Content Include="Views\Sach\NXBTheoId.cshtml" />
     <Content Include="Views\Sach\SachTheoNXBPartial.cshtml" />
     <Content Include="Views\Sach\SachTheoChuDePartial.cshtml" />
     <Content Include="Views\Sach\Tim.cshtml" />
+    <Content Include="Views\Admin\AdminPartial.cshtml" />
+    <Content Include="Views\Admin\SuaChuDe.cshtml" />
+    <Content Include="Views\Admin\SuaNhaXuatBan.cshtml" />
+    <Content Include="Views\Admin\SuaSach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

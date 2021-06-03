@@ -7,18 +7,19 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-
+<h2 class="mt-3">Sách</h2>
+<hr />
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#themNhaXuatBanModal">
-    Thêm Nhà xuất bản
+<button type="button" class="btn btn-primary mt-1" data-toggle="modal" data-target="#themSachModal">
+    Thêm Sách
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="themNhaXuatBanModal" tabindex="-1" aria-labelledby="themNhaXuatBanModalLabel" aria-hidden="true">
+<div class="modal fade" id="themSachModal" tabindex="-1" aria-labelledby="themSachModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="themChuDeModalLabel">Thêm chủ đề</h5>
+                <h5 class="modal-title" id="themChuDeModalLabel">Thêm Sách</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -26,47 +27,49 @@
             <div class="modal-body">
                 @using (Html.BeginForm("Sach", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    <div>
+                    <div class="form-group">
                         <label for="tenSach">
                             Tên Sách
                         </label>
-                        <input id="tenSach" name="tenSach" />
+                        <input class="form-control" id="tenSach" name="tenSach" />
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="giaBan">
                             Giá Bán
                         </label>
-                        <input id="giaBan" name="giaBan" />
+                        <input class="form-control" id="giaBan" name="giaBan" />
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="moTa">
                             Mô tả
                         </label>
-                        <input id="moTa" name="moTa" />
+                        <input class="form-control" id="moTa" name="moTa" />
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="fileAnhBia">
                             Ảnh bìa
                         </label>
-                        <input id="fileAnhBia" name="fileAnhBia" type="file" />
+                        <input class="form-control" id="fileAnhBia" name="fileAnhBia" type="file" />
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="soLuongTon">
                             Số lượng
                         </label>
-                        <input id="soLuongTon" name="soLuongTon" />
+                        <input class="form-control" id="soLuongTon" name="soLuongTon" />
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="chuDe">
                             Chủ đề
                         </label>
-                        @Html.DropDownList("MaCD")
+                        @Html.DropDownList("MaCD", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "custom-select" })
+
+
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label for="nhaXuatBan">
                             Nhà xuất bản
                         </label>
-                        @Html.DropDownList("MaNXB")
+                        @Html.DropDownList("MaNXB", (IEnumerable<SelectListItem>)ViewBag.PriorityID, new { @class = "custom-select" })
                     </div>
 
                     <div class="modal-footer">
@@ -79,20 +82,49 @@
     </div>
 </div>
 
-<h3>
-    @ViewBag.ThongBao
-</h3>
+@if (ViewBag.ThongBao != null)
+{
+    <h3 class="mt-3 alert-success p-2">
+        @ViewBag.ThongBao
+    </h3>
+}
+
+@if (ViewData["Loi"] != null)
+{
+
+    <div class="badge-danger p-2 mt-3 mb-3">
+        @ViewData["Loi"]
+    </div>
+}
 
 <div class="grid">
     @foreach (var sach in Model)
     {
-        <a class="book" href="@Url.Action("ChiTietSach", "Sach", new { id = sach.MaSach })">
-            <h3>@sach.TenSach</h3>
-            <p>@sach.GiaBan</p>
-        </a>
+        <div class="sach">
+            <div title="Chủ đề" class="sach-chude">@Html.Action("ChuDeTheoId", "Sach", new { id = sach.MaCD })</div>
+            <a href="@Url.Action("ChiTietSach", "Sach", new { id = sach.MaSach })">
+                <img src="/assets/upload/@(sach.AnhBia == "" ? "default-book.jpg" : sach.AnhBia)" class="sach-anhbia" />
+            </a>
+            <a href="@Url.Action("ChiTietSach", "Sach", new { id = sach.MaSach })">
+                <h3 class="sach-tensach mt-3" title="@sach.TenSach">@sach.TenSach</h3>
+            </a>
+            <div title="Nhà xuất bản" class="sach-nxb">@Html.Action("NXBTheoId", "Sach", new { id = sach.MaNXB })</div>
+            <hr />
+            <div class="d-flex justify-content-between">
+                <span>@string.Format("{0:#,###.##}đ", sach.GiaBan)</span>
+                <span>
+                    <a class="btn btn-success" href="@Url.Action("SuaSach", "Admin", new { id = sach.MaSach })">
+                        Sửa
+                    </a>
+                    <a class="btn btn-danger" href="@Url.Action("XoaSach", "Admin", new { id = sach.MaSach })">
+                        Xóa
+                    </a>
+                </span>
+            </div>
+        </div>
     }
 </div>
-<div>
+<div class="d-flex align-items-center justify-content-center flex-column">
     @* Tạo liên kết các trang *@
     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
     <div class="MenuTrang">
@@ -100,9 +132,4 @@
     </div>
 </div>
 
-<style>
-    .MenuTrang li {
-        display: inline;
-    }
-</style>
 

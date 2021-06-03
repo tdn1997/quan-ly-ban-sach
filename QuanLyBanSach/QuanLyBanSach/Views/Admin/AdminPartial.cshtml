@@ -1,0 +1,11 @@
+﻿<div class="d-flex p-2">
+    @if (Model != null)
+    {
+        <div id="admin-ten" class="text-white">
+            @Model.HoTen
+            <a class="ml-2 d-none admin-context" href="@Url.Action("DangXuat", "Admin")">
+                <div>Đăng xuất</div>
+            </a>
+        </div>
+    }
+</div>

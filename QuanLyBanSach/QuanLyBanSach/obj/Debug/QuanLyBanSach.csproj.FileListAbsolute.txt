@@ -159,3 +159,4 @@ C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSac
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\obj\Debug\QuanLyBanSach.csproj.CopyComplete
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\obj\Debug\QuanLyBanSach.dll
 C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\obj\Debug\QuanLyBanSach.pdb
+C:\Users\thuan\Desktop\School\dotNet\quan-ly-ban-sach\QuanLyBanSach\QuanLyBanSach\obj\Debug\QuanLyBanSach.csprojAssemblyReference.cache
