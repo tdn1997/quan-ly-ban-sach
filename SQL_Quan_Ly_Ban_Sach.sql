@@ -1,8 +1,10 @@
-﻿/*use master 
+﻿/*
+use master 
 go
 
 drop database QuanLyBanSach
-go*/
+go
+*/
 
 create database QuanLyBanSach
 go
@@ -104,6 +106,14 @@ CREATE TABLE ChiTietDonDatHang
 	CONSTRAINT PK_ChiTietDonDatHang PRIMARY KEY(MaDonHang, MaSach),
 	CONSTRAINT FK_ChiTietDonDatHang_DonHang FOREIGN KEY (MaDonHang) REFERENCES DonDatHang(MaDonHang),
 	CONSTRAINT FK_ChiTietDonDatHang_Sach FOREIGN KEY (MaSach) REFERENCES Sach(MaSach)
+)
+go
+
+Create Table Admin
+(
+	TaiKhoan VarChar(50) NOT NULL,
+	MatKhau VarChar(50) NOT NULL,
+	HoTen NVarChar(50) NOT NULL
 )
 go
 
@@ -221,7 +231,7 @@ insert into Sach values (
 	N'Tên sách 1',
 	99000,
 	'',
-	'sach1',
+	'',
 	'1/4/2021',
 	10,
 	1,
@@ -230,7 +240,7 @@ insert into Sach values (
 	N'Tên sách 2',
 	99000,
 	'',
-	'sach2',
+	'',
 	'1/4/2021',
 	10,
 	2,
@@ -239,7 +249,7 @@ insert into Sach values (
 	N'Tên sách 3',
 	99000,
 	'',
-	'sach3',
+	'',
 	'1/4/2021',
 	10,
 	3,
@@ -248,7 +258,7 @@ insert into Sach values (
 	N'Tên sách 4',
 	99000,
 	'',
-	'sach4',
+	'',
 	'1/4/2021',
 	10,
 	4,
@@ -257,7 +267,7 @@ insert into Sach values (
 	N'Tên sách 5',
 	99000,
 	'',
-	'sach5',
+	'',
 	'1/4/2021',
 	10,
 	5,
@@ -340,6 +350,18 @@ insert into ChiTietDonDatHang values (
 )
 go
 
+
+insert into Admin values(
+	'admin',
+	'123456',
+	N'Quản trị viên'
+),(
+	'manager',
+	'manager',
+	N'Quản lý'
+)
+go
+
 /* -------------------------------
 
 select * from TacGia
@@ -357,5 +379,7 @@ select * from ChiTietDonDatHang
 select * from DonDatHang
 
 select * from KhachHang
+
+select * from Admin
 
 */

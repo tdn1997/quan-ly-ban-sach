@@ -179,12 +179,12 @@
     <Content Include="fonts\RobotoCondensed-Light.ttf" />
     <Content Include="fonts\RobotoCondensed-LightItalic.ttf" />
     <Content Include="fonts\RobotoCondensed-Regular.ttf" />
+    <Content Include="assets\favicon_io\site.webmanifest" />
     <Content Include="Models\QuanLyBanSach.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>QuanLyBanSach.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="assets\favicon_io\site.webmanifest" />
     <None Include="Models\QuanLyBanSach.dbml.layout">
       <DependentUpon>QuanLyBanSach.dbml</DependentUpon>
     </None>

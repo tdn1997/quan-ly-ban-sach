@@ -1,5 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuanLyBanSach" Class="QuanLyBanSachDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-LQ94F24;Initial Catalog=QuanLyBanSach;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QuanLyBanSachConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-8HH2U9C;Initial Catalog=QuanLyBanSach;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QuanLyBanSachConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="TaiKhoan" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MatKhau" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VietSach" Member="VietSaches">
+    <Type Name="VietSach">
+      <Column Name="MaTG" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaSach" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VaiTro" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ViTri" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Sach_VietSach" Member="Sach" ThisKey="MaSach" OtherKey="MaSach" Type="Sach" IsForeignKey="true" />
+      <Association Name="TacGia_VietSach" Member="TacGia" ThisKey="MaTG" OtherKey="MaTG" Type="TacGia" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.ChiTietDonDatHang" Member="ChiTietDonDatHangs">
     <Type Name="ChiTietDonDatHang">
       <Column Name="MaDonHang" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -62,8 +79,8 @@
       <Column Name="SoLuongTon" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaCD" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaNXB" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Sach_ChiTietDonDatHang" Member="ChiTietDonDatHangs" ThisKey="MaSach" OtherKey="MaSach" Type="ChiTietDonDatHang" />
       <Association Name="Sach_VietSach" Member="VietSaches" ThisKey="MaSach" OtherKey="MaSach" Type="VietSach" />
+      <Association Name="Sach_ChiTietDonDatHang" Member="ChiTietDonDatHangs" ThisKey="MaSach" OtherKey="MaSach" Type="ChiTietDonDatHang" />
       <Association Name="ChuDe_Sach" Member="ChuDe" ThisKey="MaCD" OtherKey="MaCD" Type="ChuDe" IsForeignKey="true" />
       <Association Name="NhaXuatBan_Sach" Member="NhaXuatBan" ThisKey="MaNXB" OtherKey="MaNXB" Type="NhaXuatBan" IsForeignKey="true" />
     </Type>
@@ -76,23 +93,6 @@
       <Column Name="TieuSu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="DienThoai" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="TacGia_VietSach" Member="VietSaches" ThisKey="MaTG" OtherKey="MaTG" Type="VietSach" />
-    </Type>
-  </Table>
-  <Table Name="dbo.VietSach" Member="VietSaches">
-    <Type Name="VietSach">
-      <Column Name="MaTG" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaSach" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="VaiTro" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ViTri" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Sach_VietSach" Member="Sach" ThisKey="MaSach" OtherKey="MaSach" Type="Sach" IsForeignKey="true" />
-      <Association Name="TacGia_VietSach" Member="TacGia" ThisKey="MaTG" OtherKey="MaTG" Type="TacGia" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Admin" Member="Admins">
-    <Type Name="Admin">
-      <Column Name="TaiKhoan" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MatKhau" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="HoTen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
